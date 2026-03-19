@@ -4,38 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.6.0/moment-timezone-with-data-1970-2030.min.js"></script>
     <title>World Clock - Érica Lemos</title>
   </head>
   <body>
     <div class="container">
       <h1>World Clock</h1>
 
-      <select>
+      <select id="city">
         <option value="">Select a city..</option>
-        <option value="">Lisbon</option>
-        <option value="">Maputo</option>
-        <option value="">London</option>
-        <option value="">Florence</option>
+        <option value="Europe/Lisbon">Lisbon</option>
+        <option value="Africa/Maputo">Maputo</option>
+        <option value="America/Havana">Havana</option>
+        <option value="Asia/Tokyo">Tokyo</option>
       </select>
-
-      <div class="city">
-        <div>
-          <h2>Lisbon</h2>
-          <div class="date">August 15th 2026</div>
+      <div id="cities">
+        <div class="city" id="lisbon">
+          <div>
+            <h2>Lisbon</h2>
+            <div class="date"></div>
+          </div>
+          <div class="time"></div>
         </div>
-        <div class="time">
-          1:48:15
-          <small>AM</small>
-        </div>
-      </div>
-      <div class="city">
-        <div>
-          <h2>Maputo</h2>
-          <div class="date">August 15th 2026</div>
-        </div>
-        <div class="time">
-          1:48:15
-          <small>AM</small>
+        <div class="city" id="maputo">
+          <div>
+            <h2>Maputo</h2>
+            <div class="date"></div>
+          </div>
+          <div class="time"></div>
         </div>
       </div>
     </div>
