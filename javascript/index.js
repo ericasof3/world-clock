@@ -24,6 +24,32 @@ function updateTime() {
       "h:mm:ss [<small>]A[</small>]",
     );
   }
+
+  //Havana
+  let havanaElement = document.querySelector("#havana");
+  if (havanaElement) {
+    let havanaDateElement = havanaElement.querySelector(".date");
+    let havanaTimeElement = havanaElement.querySelector(".time");
+    let havanaTime = moment().tz("America/Havana");
+
+    havanaDateElement.innerHTML = havanaTime.format("MMMM Do YYYY");
+    havanaTimeElement.innerHTML = havanaTime.format(
+      "h:mm:ss [<small>]A[</small>]",
+    );
+  }
+
+  //Tokyo
+  let tokyoElement = document.querySelector("#tokyo");
+  if (tokyoElement) {
+    let tokyoDateElement = tokyoElement.querySelector(".date");
+    let tokyoTimeElement = tokyoElement.querySelector(".time");
+    let tokyoTime = moment().tz("Asia/Tokyo");
+
+    tokyoDateElement.innerHTML = tokyoTime.format("MMMM Do YYYY");
+    tokyoTimeElement.innerHTML = tokyoTime.format(
+      "h:mm:ss [<small>]A[</small>]",
+    );
+  }
 }
 
 function updateCity(event) {
@@ -37,7 +63,7 @@ function updateCity(event) {
         <h2>${cityName}</h2>
         <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
     </div>
-    <div class="time">${cityTime.format("h:mm:ss")} <small>]${cityTime.format(
+    <div class="time">${cityTime.format("h:mm:ss")} <small>${cityTime.format(
       "A",
     )}</small></div>
   </div>
