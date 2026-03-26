@@ -9,48 +9,35 @@
     <title>World Clock - Érica Lemos</title>
   </head>
   <body>
-    <div class="container">
+    <header>
       <h1>World Clock</h1>
 
       <select id="city">
-        <option value="">Select a city..</option>
+        <option value="">Select a city</option>
         <option value="current">My current location</option>
+        <option value="Asia/Kuala_Lumpur">Kuala Lumpur</option>
+        <option value="Europe/London">London</option>
+        <option value="Africa/Luanda">Luanda</option>
+        <option value="America/Santiago">Santiago</option>
         <option value="Europe/Lisbon">Lisbon</option>
         <option value="Africa/Maputo">Maputo</option>
         <option value="America/Havana">Havana</option>
         <option value="Asia/Tokyo">Tokyo</option>
       </select>
-      <div id="cities">
-        <div class="city" id="lisbon">
-          <div>
-            <h2>Lisbon</h2>
-            <div class="date"></div>
-          </div>
-          <div class="time"></div>
-        </div>
-        <div class="city" id="maputo">
-          <div>
-            <h2>Maputo</h2>
-            <div class="date"></div>
-          </div>
-          <div class="time"></div>
-        </div>
-        <div class="city" id="havana">
-          <div>
-            <h2>Havana</h2>
-            <div class="date"></div>
-          </div>
-          <div class="time"></div>
-        </div>
-        <div class="city" id="tokyo">
-          <div>
-            <h2>Tokyo</h2>
-            <div class="date"></div>
-          </div>
-          <div class="time"></div>
+    </header>
+    <div class="carousel-wrapper">
+      <button class="arrow" id="previous-button">‹</button>
+
+      <div class="container">
+        <div class="cities-slider" id="cities"></div>
+        <div class="empty-message" id="empty-message">
+          Select a city to get started
         </div>
       </div>
+
+      <button class="arrow" id="next-button">›</button>
     </div>
+
     <footer>
       This project was coded by <strong>Érica Lemos</strong> and is
       <a href="https://github.com/ericasof3/world-clock" target="_blank"
