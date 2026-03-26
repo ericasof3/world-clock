@@ -3,7 +3,28 @@ let currentPosition = 0;
 let visibleCities = 4;
 
 function formatCityName(cityTimeZone) {
-  return cityTimeZone.replace("_", " ").split("/")[1];
+  return cityTimeZone.split("/")[1].replace("_", " ");
+}
+
+function formatCityClass(cityTimeZone) {
+  let city = cityTimeZone.split("/")[1].replace("_", "-").toLowerCase();
+
+  let availableCities = [
+    "lisbon",
+    "maputo",
+    "havana",
+    "tokyo",
+    "london",
+    "seoul",
+    "santiago",
+    "kuala-lumpur",
+  ];
+
+  if (availableCities.includes(city)) {
+    return city;
+  } else {
+    return "current-location";
+  }
 }
 
 function displayCities() {
@@ -24,10 +45,11 @@ function displayCities() {
 
   selectedCities.forEach(function (cityTimeZone) {
     let cityName = formatCityName(cityTimeZone);
+    let cityClass = formatCityClass(cityTimeZone);
     let cityTime = moment().tz(cityTimeZone);
 
     let cityHTML = `
-      <div class="city">
+      <div class="city ${cityClass}">
         <div class="city-content">
           <div>
             <h2>${cityName}</h2>
@@ -76,9 +98,16 @@ function updateTimes() {
 
 function updateCarousel() {
   let citiesElement = document.querySelector("#cities");
-  let movePercentage = currentPosition * 25;
+  let city = document.querySelector(".city");
 
-  citiesElement.style.transform = `translateX(-${movePercentage}%)`;
+  if (!city) return;
+
+  let gap = 10;
+  let cityWidth = city.offsetWidth + gap;
+
+  let move = currentPosition * cityWidth;
+
+  citiesElement.style.transform = `translateX(-${move}px)`;
 }
 
 function showPreviousCity() {
@@ -131,4 +160,4 @@ let nextButton = document.querySelector("#next-button");
 nextButton.addEventListener("click", showNextCity);
 
 displayCities();
-setInterval(updateTime, 1000);
+setInterval(updateTimes, 1000);
