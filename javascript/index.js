@@ -6,7 +6,7 @@ function formatCityName(cityTimeZone) {
   return cityTimeZone.split("/")[1].replace("_", " ");
 }
 
-function formatCityClass(cityTimeZone) {
+function formatCityImage(cityTimeZone) {
   let city = cityTimeZone.split("/")[1].replace("_", "-").toLowerCase();
 
   let availableCities = [
@@ -21,9 +21,9 @@ function formatCityClass(cityTimeZone) {
   ];
 
   if (availableCities.includes(city)) {
-    return city;
+    return `images/${city}.jpg`;
   } else {
-    return "current-location";
+    return "images/current-location.jpg";
   }
 }
 
@@ -45,26 +45,35 @@ function displayCities() {
 
   selectedCities.forEach(function (cityTimeZone) {
     let cityName = formatCityName(cityTimeZone);
-    let cityClass = formatCityClass(cityTimeZone);
+    let cityImage = formatCityImage(cityTimeZone);
     let cityTime = moment().tz(cityTimeZone);
 
     let cityHTML = `
-      <div class="city ${cityClass}" data-timezone="${cityTimeZone}">
-      <button class="remove-city-button" onclick="removeCity('${cityTimeZone}')">×</button>
+    <div class="city" data-timezone="${cityTimeZone}" style="background-image: url('${cityImage}')">
+      <button class="remove-city-button" data-timezone="${cityTimeZone}">×</button>
       <div class="city-content">
         <div>
           <h2>${cityName}</h2>
           <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
         </div>
-        <div class="time">${cityTime.format("HH:mm:ss")}</div>
+        <div class="time">${cityTime.format("H:mm:ss")}</div>
       </div>
-      </div>
+    </div>
     `;
 
     citiesHTML += cityHTML;
   });
 
   citiesElement.innerHTML = citiesHTML;
+
+  let removeButtons = document.querySelectorAll(".remove-city-button");
+
+  removeButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      let cityTimeZone = button.getAttribute("data-timezone");
+      removeCity(cityTimeZone);
+    });
+  });
 
   updateCarousel();
   updateButtons();
@@ -167,17 +176,8 @@ function updateButtons() {
     lastPossiblePosition = 0;
   }
 
-  if (currentPosition === 0) {
-    previousButton.disabled = true;
-  } else {
-    previousButton.disabled = false;
-  }
-
-  if (currentPosition >= lastPossiblePosition) {
-    nextButton.disabled = true;
-  } else {
-    nextButton.disabled = false;
-  }
+  previousButton.disabled = currentPosition === 0;
+  nextButton.disabled = currentPosition >= lastPossiblePosition;
 }
 
 let citiesSelectElement = document.querySelector("#city");

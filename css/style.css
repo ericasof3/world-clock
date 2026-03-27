@@ -1,8 +1,8 @@
 body {
-  background-color: #191919;
-  font-family: "Plus Jakarta Sans", sans-serif;
-  color: white;
   margin: 0;
+  background-color: #191919;
+  color: white;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 header {
@@ -14,24 +14,15 @@ header {
   justify-content: space-between;
   gap: 20px;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 h1 {
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  font-size: clamp(24px, 3vw, 34px);
   margin: 0;
   text-align: left;
-}
-
-h2 {
-  margin: 0 0 6px;
-  font-size: clamp(16px, 1.8vw, 22px);
-  font-weight: 600;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .controls {
@@ -48,14 +39,11 @@ select {
   margin: 0;
   border-radius: 10px;
   border: none;
-  font-size: 14px;
   background-color: rgb(51, 51, 51);
+  font-size: 14px;
   color: white;
   cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    transform 0.1s ease;
+  transition: background 0.2s ease;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -73,31 +61,74 @@ select:focus {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
 }
 
-.container {
-  flex: 1;
-  height: min(500px, 70vh);
+.reset-button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
   background: rgb(51, 51, 51);
-  padding: clamp(16px, 3vw, 30px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.reset-button:hover {
+  background: rgb(70, 70, 70);
+  transform: scale(1.08) rotate(15deg);
 }
 
 .carousel-wrapper {
-  width: min(1200px, 92vw);
+  width: 92%;
+  max-width: 1200px;
   margin: 80px auto 20px;
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.cities-slider {
+.arrow {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
   display: flex;
-  height: 100%;
-  transition: transform 0.3s ease;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background: rgb(51, 51, 51);
+  color: white;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.arrow:hover {
+  background: rgb(70, 70, 70);
+  transform: scale(1.1);
+}
+
+.arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.container {
+  height: 500px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  flex: 1;
+  background: rgb(51, 51, 51);
 }
 
 .empty-message {
@@ -110,16 +141,22 @@ select:focus {
   opacity: 0.7;
 }
 
-.city {
-  flex: 0 0 calc((100% - 30px) / 4);
-  min-width: calc((100% - 30px) / 4);
+.cities-slider {
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 clamp(8px, 2vw, 20px);
+  transition: transform 0.3s ease;
+  gap: 10px;
+}
+
+.city {
+  height: 100%;
+  padding: 0 20px;
   box-sizing: border-box;
   border-radius: 20px;
+  display: flex;
+  flex: 0 0 calc((100% - 30px) / 4);
+  flex-direction: column;
+  justify-content: flex-end;
   overflow: hidden;
   position: relative;
   background-size: cover;
@@ -140,76 +177,21 @@ select:focus {
   opacity: 0.7;
 }
 
-.city-content {
-  margin-bottom: 10px;
-  position: relative;
-  z-index: 1;
-}
-
-.lisbon {
-  background-image: url("../images/lisbon.jpg");
-}
-
-.maputo {
-  background-image: url("../images/maputo.jpg");
-}
-
-.havana {
-  background-image: url("../images/havana.jpg");
-}
-
-.tokyo {
-  background-image: url("../images/tokyo.jpg");
-}
-
-.london {
-  background-image: url("../images/london.jpg");
-}
-
-.seoul {
-  background-image: url("../images/seoul.jpg");
-}
-
-.santiago {
-  background-image: url("../images/santiago.jpg");
-}
-
-.kuala-lumpur {
-  background-image: url("../images/kuala-lumpur.jpg");
-}
-
-.current-location {
-  background-image: url("../images/current-location.jpg");
-}
-
-.date {
-  font-size: clamp(12px, 1.2vw, 14px);
-  opacity: 0.7;
-  margin-top: 4px;
-}
-
-.time {
-  font-size: clamp(22px, 3vw, 36px);
-  font-weight: bold;
-  margin-top: 14px;
-  line-height: 1.1;
-}
-
 .remove-city-button {
-  position: absolute;
-  top: 12px;
-  right: 12px;
   width: 28px;
   height: 28px;
+  top: 12px;
+  right: 12px;
   border: none;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
   background: rgba(0, 0, 0, 0.45);
   color: white;
   font-size: 18px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 2;
   transition:
     transform 0.2s ease,
@@ -221,67 +203,41 @@ select:focus {
   transform: scale(1.08);
 }
 
-.arrow {
-  width: 42px;
-  height: 42px;
-  border: none;
-  border-radius: 50%;
-  background: rgb(51, 51, 51);
-  color: white;
+.city-content {
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+h2 {
+  margin: 0 0 6px;
   font-size: 22px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
+  font-weight: 600;
 }
 
-.arrow:hover {
-  transform: scale(1.1);
-  background: rgb(70, 70, 70);
+.date {
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: 0.7;
 }
 
-.arrow:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-
-.reset-button {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgb(51, 51, 51);
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-}
-
-.reset-button:hover {
-  transform: scale(1.08) rotate(15deg);
-  background: rgb(70, 70, 70);
+.time {
+  margin-top: 14px;
+  line-height: 1.1;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 footer {
   text-align: center;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
   padding-top: 40px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
   font-weight: 400;
-  opacity: 0.7;
 }
 
 footer strong {
   font-weight: 600;
-  opacity: 1;
 }
 
 footer a {
