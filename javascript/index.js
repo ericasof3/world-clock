@@ -49,14 +49,15 @@ function displayCities() {
     let cityTime = moment().tz(cityTimeZone);
 
     let cityHTML = `
-      <div class="city ${cityClass}">
-        <div class="city-content">
-          <div>
-            <h2>${cityName}</h2>
-            <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
-          </div>
-          <div class="time">${cityTime.format("HH:mm:ss")}</div>
+      <div class="city ${cityClass}" data-timezone="${cityTimeZone}">
+      <button class="remove-city-button" onclick="removeCity('${cityTimeZone}')">×</button>
+      <div class="city-content">
+        <div>
+          <h2>${cityName}</h2>
+          <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
         </div>
+        <div class="time">${cityTime.format("HH:mm:ss")}</div>
+      </div>
       </div>
     `;
 
@@ -92,8 +93,37 @@ function addCity(event) {
   event.target.value = "";
 }
 
-function updateTimes() {
+function removeCity(cityTimeZone) {
+  selectedCities = selectedCities.filter(function (city) {
+    return city !== cityTimeZone;
+  });
+
+  let lastPossiblePosition = selectedCities.length - visibleCities;
+
+  if (lastPossiblePosition < 0) {
+    lastPossiblePosition = 0;
+  }
+
+  if (currentPosition > lastPossiblePosition) {
+    currentPosition = lastPossiblePosition;
+  }
+
   displayCities();
+}
+
+function updateTimes() {
+  let cityElements = document.querySelectorAll(".city");
+
+  cityElements.forEach(function (cityElement) {
+    let cityTimeZone = cityElement.getAttribute("data-timezone");
+    let cityTime = moment().tz(cityTimeZone);
+
+    let dateElement = cityElement.querySelector(".date");
+    let timeElement = cityElement.querySelector(".time");
+
+    dateElement.innerHTML = cityTime.format("MMMM Do YYYY");
+    timeElement.innerHTML = cityTime.format("HH:mm:ss");
+  });
 }
 
 function updateCarousel() {

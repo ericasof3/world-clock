@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.6.0/moment-timezone-with-data-1970-2030.min.js"></script>
     <title>World Clock - Érica Lemos</title>
@@ -12,18 +16,22 @@
     <header>
       <h1>World Clock</h1>
 
-      <select id="city">
-        <option value="">Select a city</option>
-        <option value="current">My current location</option>
-        <option value="Asia/Kuala_Lumpur">Kuala Lumpur</option>
-        <option value="Europe/London">London</option>
-        <option value="Asia/Seoul">Seoul</option>
-        <option value="America/Santiago">Santiago</option>
-        <option value="Europe/Lisbon">Lisbon</option>
-        <option value="Africa/Maputo">Maputo</option>
-        <option value="America/Havana">Havana</option>
-        <option value="Asia/Tokyo">Tokyo</option>
-      </select>
+      <div class="controls">
+        <select id="city">
+          <option value="">Select a city</option>
+          <option value="current">My current location</option>
+          <option value="Asia/Kuala_Lumpur">Kuala Lumpur</option>
+          <option value="Europe/London">London</option>
+          <option value="Asia/Seoul">Seoul</option>
+          <option value="America/Santiago">Santiago</option>
+          <option value="Europe/Lisbon">Lisbon</option>
+          <option value="Africa/Maputo">Maputo</option>
+          <option value="America/Havana">Havana</option>
+          <option value="Asia/Tokyo">Tokyo</option>
+        </select>
+
+        <a href="/" class="reset-button">&#8635;</a>
+      </div>
     </header>
     <div class="carousel-wrapper">
       <button class="arrow" id="previous-button">&#10094;</button>
@@ -36,10 +44,6 @@
       </div>
 
       <button class="arrow" id="next-button">&#10095;</button>
-    </div>
-
-    <div class="reset-container">
-      <a href="/" class="reset-button">&#8635;</a>
     </div>
 
     <footer>
